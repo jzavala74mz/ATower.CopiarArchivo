@@ -5,7 +5,7 @@
   ## IP Remota: 192.168.112.174
   ## Ruta y archivo destino: /root/Apr2006_MDX1_x86_Archive.cab
 
-- name: COPIAR UN ARCHIVO DESDE EL SERVIDOR DE TOWER AL SERVIDOR DESTINO
+- name: COPIAR UN ARCHIVO DESDE EL SERVIDOR DE TOWER AL SERVIDOR DESTINO (1658)
   hosts: all
   gather_facts: yes
   
