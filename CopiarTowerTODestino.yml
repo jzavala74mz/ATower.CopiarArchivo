@@ -16,13 +16,15 @@
                     path: '{{ ruta_destino }}'
                     state: directory
                     mode: '0755'
+
+          - name: Vopiar el archivo de prueba mediante scp esperando el usuario root
+            command: scp root@192.168.112.174:/home/jzavala74mz/Uploads/SpectrumInstall_10.4_Linux.tar.gz /root/archivoCopiado.cmb2
           
-          - name: Copiar el archivo de prueba
-            copy:
-                    src: '{{ archivo_origen }}'
-                    dest: '{{ ruta_destino }}'
-                    mode: preserve
-                    remote_src: no
+            ## - name: Copiar el archivo de prueba
+            ##copy:
+            ##        src: '{{ archivo_origen }}'
+            ##        dest: '{{ ruta_destino }}'
+            ##        remote_src: no
 
  
 
