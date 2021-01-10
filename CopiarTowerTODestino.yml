@@ -1,0 +1,27 @@
+---
+  ## Copiar archivo desde el servidor Tower al servidor destino
+  ## Autor: Jorge Zavala Navarro
+
+- name: COPIAR UN ARCHIVO DESDE EL SERVIDOR DE TOWER AL SERVIDOR DESTINO
+  hosts: all
+  gather_facts: yes
+  
+  vars:
+          archivo_origen: /home/jzavala74mz/Uploads/SpectrumInstall_10.4_Linux.tar.gz
+          ruta_destino: /home/jzavala74mz/Recepts
+
+  tasks:
+          - name: Crear la carpeta destino
+            file:
+                    path: '{{ ruta_destino }}'
+                    state: directory
+                    mode: '0755'
+          
+          - name: Copiar el archivo de prueba
+            copy:
+                    src: '{{ archivo_origen }}'
+                    dest: '{{ ruta_destino }}'
+                    remote_src: no
+
+ 
+
