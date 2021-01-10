@@ -21,7 +21,8 @@
             copy:
                     src: '{{ archivo_origen }}'
                     dest: '{{ ruta_destino }}'
-                    remote_src: yes
+                    mode: preserve
+                    remote_src: no
 
  
 
