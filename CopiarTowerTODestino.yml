@@ -1,6 +1,9 @@
 ---
   ## Copiar archivo desde el servidor Tower al servidor destino
   ## Autor: Jorge Zavala Navarro
+  ## Archivo a descargar: /home/jzavala74mz/Uploads/Apr2006_MDX1_x86_Archive.cab
+  ## IP Remota: 192.168.112.174
+  ## Ruta y archivo destino: /root/Apr2006_MDX1_x86_Archive.cab
 
 - name: COPIAR UN ARCHIVO DESDE EL SERVIDOR DE TOWER AL SERVIDOR DESTINO
   hosts: all
@@ -9,15 +12,30 @@
   vars:
           archivo_origen: /home/jzavala74mz/Uploads/Apr2006_MDX1_x86_Archive.cab
           ruta_destino: /home/jzavala74mz/Recepts
+          path_repogit_dir: /home/CopiarArchivo/git
+          path_repogit_file: /home/CopiarArchivo/git/ATower.CopiarArchivo.zip
 
   tasks:
-          - name: Crear la carpeta destino
+          - name: Crear la carpeta destino del repositorio del git
             file:
-                    path: '{{ ruta_destino }}'
+                    path: '{{ path_repogit_dir }}'
+                    state: directory
+                    mode: '0755'
+          
+          - name: Descargar los recursos del git para este proyecto
+            git:
+                    repo: https://github.com/jzavala74mz/ATower.CopiarArchivo
+                    dest: '{{ path_repogit_dir }}'
+                    archive: '{{ path_repogit_file }}'
+
+          - name: Crear la carpeta destino del archivo a descargar
+            file:
+                    path: '/root'
                     state: directory
                     mode: '0755'
 
+
           - name: Transfiriendo archivo de instalación
-            command: 'expect {{ path_repogit_dir }}/ScriptCopyinstalador.sh'
+            command: 'expect {{ path_repogit_dir }}/ScriptCopyPrueba.sh'
 
 
